@@ -1,0 +1,66 @@
+[workspace]
+authors = ["Hui Lin", "Yukun Yang", "Rong Zhao", "Giovanni Pezzulo", "Wolfgang Maass"]
+channels = ["conda-forge"]
+name = "GCML"
+platforms = ["linux-64", "osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+
+# =============================================================================
+# Environments
+# =============================================================================
+# Make CPU the default environment
+[environments]
+gpu = { features = ["gpu"] }
+default = { features = ["cpu"] }
+
+# =============================================================================
+# CPU environment dependencies
+# =============================================================================
+[feature.cpu]
+platforms = ["linux-64", "osx-arm64"]
+
+[feature.cpu.dependencies]
+pytorch-cpu = "*"
+torchvision = "*"
+torchmetrics = "*"
+
+[feature.cpu.pypi-dependencies]
+# torch = { version = "*", index = "https://download.pytorch.org/whl/cpu" }
+# torchvision = { version = "*", index = "https://download.pytorch.org/whl/cpu" }
+# torchmetrics = { version = "*", index = "https://download.pytorch.org/whl/cpu" }
+# jax = "*"
+
+# =============================================================================
+# GPU environment dependencies
+# =============================================================================
+[feature.gpu]
+system-requirements = { cuda = "13.0" }
+platforms = ["linux-64"]
+
+[feature.gpu.dependencies]
+cuda-version = ">=13"
+# pytorch-gpu = "*"
+# torchvision = "*"
+# torchmetrics = "*"
+
+[feature.gpu.pypi-dependencies]
+torch = { version = "*", index = "https://download.pytorch.org/whl/cu130" }
+torchvision = { version = "*", index = "https://download.pytorch.org/whl/cu130" }
+torchmetrics = { version = "*", index = "https://download.pytorch.org/whl/cu130" }
+# jax = { version = ">=0.7.1, <0.8", extras = ["cuda13"] }
+
+[dependencies]
+python = "3.12.*"
+ipykernel = ">=7.2.0,<8"
+notebook = ">=7.5.5,<8"
+networkx = ">=3.6.1,<4"
+scikit-learn = ">=1.8.0,<2"
+tqdm = ">=4.67.3,<5"
+matplotlib = ">=3.10.8,<4"
+h5py = ">=3.16.0,<4"
+seaborn = ">=0.13.2,<0.14"
+jupyter = ">=1.1.1,<2"
+ipywidgets = ">=8.1.8,<9"
